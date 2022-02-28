@@ -2,14 +2,14 @@
 
 @foreach (var p in Model?.Products  ?? Enumerable.Empty<Product>())
 {
-   <partial name="Products" model="p" />
+   @await Html.PartialAsync("Products",p);
 }
 <div>
     <ul>
         @for (var i = 1; i <= Model?.PageInfo.TotalPages; i++)
         {
             <li style="display:inline; margin-right: 5px; list-style-type: none;">
-                <a asp-action="Index" asp-route-page=@i>@i</a>
+                <a asp-action="Index" asp-route-page=@i >@i </a>
             </li>
         }
     </ul>

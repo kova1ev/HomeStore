@@ -17,12 +17,13 @@ namespace HomeStore.Controllers
             productRepository = repository;
         }
 
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(string category, int page = 1)
         {
             return View(new ProductListViewModel
             {
                 Products = productRepository
                     .Products
+                    .Where(p => category == null || p.Category == category)
                     .OrderBy(p => p.Id)
                     .Skip(PageSize * (page - 1))
                     .Take(PageSize),
@@ -31,7 +32,8 @@ namespace HomeStore.Controllers
                     CurretnPage = page,
                     TotalItems = productRepository.Products.Count(),
                     ItemPerPage = PageSize
-                }
+                },
+                Category = category
             });
         }
     }
