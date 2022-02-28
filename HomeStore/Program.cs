@@ -9,11 +9,11 @@ builder.Services.AddMvc();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionstring));
 var app = builder.Build();
 
-//if(app.Environment.IsProduction())
-//{
-//    app.UseExceptionHandler("")
-//}
-
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.MapControllerRoute(
     "pagin",
