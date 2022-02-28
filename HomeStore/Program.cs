@@ -17,7 +17,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.MapControllerRoute(
     "pagin",
-    "page{page}",
+    "/{page}",
     new { Controller = "Home", action = "Index" }
     );
 app.MapDefaultControllerRoute();

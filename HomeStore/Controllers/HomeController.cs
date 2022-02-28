@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using HomeStore.Data;
 using HomeStore.Models;
+using HomeStore.Models.ViewModels;
 
 namespace HomeStore.Controllers
 {
@@ -18,7 +19,20 @@ namespace HomeStore.Controllers
 
         public IActionResult Index(int page = 1)
         {
-            return View(productRepository.Products.OrderBy(p=>p.Id).Skip(PageSize*(page-1)).Take(PageSize));
+            return View(new ProductListViewModel
+            {
+                Products = productRepository
+                    .Products
+                    .OrderBy(p => p.Id)
+                    .Skip(PageSize * (page - 1))
+                    .Take(PageSize),
+                PageInfo = new PageInfo
+                {
+                    CurretnPage = page,
+                    TotalItems = productRepository.Products.Count(),
+                    ItemPerPage = PageSize
+                }
+            });
         }
     }
 }

@@ -1,10 +1,16 @@
-@model IQueryable<Product>
+@model ProductListViewModel
 
-@foreach (var p in Model)
+@foreach (var p in Model?.Products  ?? Enumerable.Empty<Product>())
 {
-    <div>
-        <h3>@p.Name</h3>
-        @p.Description
-        <h4>@p.Price.ToString("c")</h4>
-    </div>
+   <partial name="Products" model="p" />
 }
+<div>
+    <ul>
+        @for (var i = 1; i <= Model?.PageInfo.TotalPages; i++)
+        {
+            <li style="display:inline; margin-right: 5px; list-style-type: none;">
+                <a asp-action="Index" asp-route-page=@i>@i</a>
+            </li>
+        }
+    </ul>
+</div>
