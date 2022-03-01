@@ -18,9 +18,10 @@ namespace HomeStore.Controllers
             productRepository = repository;
         }
 
-        [Route("{category}/{page:int}")]
-        [Route("/{page:int}")]
+
+        [Route("{category?}/{page:int?}")]
         [Route("/")]
+       // [Route("/{page:int}")]
         public IActionResult Index(string category, int page = 1)
         {
             return View(new ProductListViewModel

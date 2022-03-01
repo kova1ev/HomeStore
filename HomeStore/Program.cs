@@ -8,15 +8,19 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddMvc();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionstring));
 
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-
-//app.UseHttpsRedirection();
+app.UseStatusCodePages();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 // app.MapControllerRoute("category",
 //                         "{category}",
@@ -35,6 +39,7 @@ app.UseStaticFiles();
 //                         new { Controller = "Home", action = "Index", page = 1 });
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 ProductSeedData.AddTestData(app);
 
