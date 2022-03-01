@@ -7,9 +7,10 @@ using HomeStore.Models.ViewModels;
 
 namespace HomeStore.Controllers
 {
+
     public class HomeController : Controller
     {
-        readonly int PageSize = 4;
+        readonly int PageSize = 2;
         private readonly IProductRepository productRepository;
 
         public HomeController(IProductRepository repository)
@@ -17,6 +18,9 @@ namespace HomeStore.Controllers
             productRepository = repository;
         }
 
+        [Route("{category}/{page:int}")]
+        [Route("/{page:int}")]
+        [Route("/")]
         public IActionResult Index(string category, int page = 1)
         {
             return View(new ProductListViewModel

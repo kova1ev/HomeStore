@@ -9,7 +9,7 @@
         @for (var i = 1; i <= Model?.PageInfo.TotalPages; i++)
         {
             <li style="display:inline; margin-right: 5px; list-style-type: none;">
-                <a asp-action="Index" asp-route-page=@i asp-route-category=@Model.Category >@i</a>
+                <a asp-action="Index" asp-route-page="@i" asp-route-category=@Model.Category >@i</a>
             </li>
         }
     </ul>

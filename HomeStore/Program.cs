@@ -15,24 +15,24 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.MapControllerRoute("catpage",
-                        "{category}/Page{page:int}",
-                        new { Controller = "Home", action = "Index" });
+// app.MapControllerRoute("category",
+//                         "{category}",
+//                         new { Controller = "Home", action = "Index", page = 1 });
 
-app.MapControllerRoute("page",
-                        "Page{page:int}",
-                        new { Controller = "Home", action = "Index", pPage = 1 });
+// app.MapControllerRoute("catpage",
+//                         "{category}/Page{page:int}",
+//                         new { Controller = "Home", action = "Index" });
 
-app.MapControllerRoute("category",
-                        "{category}",
-                        new { Controller = "Home", action = "Index", page = 1 });
+// app.MapControllerRoute("page",
+//                         "Page{page:int}",
+//                         new { Controller = "Home", action = "Index", page = 1 });
 
-app.MapControllerRoute("pagination",
-                        "Products/Page{page}",
-                        new { Controller = "Home", action = "Index", page = 1 });
+// app.MapControllerRoute("pagination",
+//                         "Products/Page{page}",
+//                         new { Controller = "Home", action = "Index", page = 1 });
 
 app.MapDefaultControllerRoute();
 
