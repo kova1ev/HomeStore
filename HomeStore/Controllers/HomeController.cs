@@ -30,7 +30,9 @@ namespace HomeStore.Controllers
                 PageInfo = new PageInfo
                 {
                     CurretnPage = page,
-                    TotalItems = productRepository.Products.Count(),
+                    TotalItems = category == null
+                    ? productRepository.Products.Count()
+                    : productRepository.Products.Where(p => p.Category == category).Count(),
                     ItemPerPage = PageSize
                 },
                 Category = category
