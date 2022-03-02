@@ -2,31 +2,36 @@ namespace HomeStore.Models
 {
     public class Cart
     {
-        public List<CartItem> Items { get; set; } = new List<CartItem>();
-
-        public void AddItem(Product product, int quantity)
+        private List<CartItem> itemCollection = new List<CartItem>();
+        public virtual void AddItem(Product product, int quantity)
         {
-            CartItem? item = Items.Where(p => p.Product.Id == product.Id).FirstOrDefault();
+            CartItem? item = itemCollection.Where(p => p.Product.Id == product.Id).FirstOrDefault();
             if (item == null)
             {
-                Items.Add(new CartItem
-                {
-                    Product = product,
-                    Quantity = quantity
-                });
+                itemCollection.Add(new CartItem { Product = product, Quantity = quantity });
             }
             else
             {
                 item.Quantity += quantity;
             }
         }
-        public virtual void RemoveLine(Product product) =>
-                    Items.RemoveAll(l => l.Product.Id == product.Id);
 
-        public decimal ComputeTotalValue() =>
-            Items.Sum(e => e.Product.Price * e.Quantity);
+        public virtual void RemoveItem(Product product)
+        {
+            itemCollection.RemoveAll(i => i.Product.Id == product.Id);
+        }
 
-        public virtual void Clear() => Items.Clear();
+        public virtual decimal ComputeTotalValue()
+        {
+            return itemCollection.Sum(e => e.Product.Price * e.Quantity);
+        }
+
+        public virtual void Clear()
+        {
+            itemCollection.Clear();
+        }
+
+        public virtual IEnumerable<CartItem> Items => itemCollection;
 
     }
 }

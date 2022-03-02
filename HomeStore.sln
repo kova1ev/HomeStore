@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeStore", "HomeStore\HomeStore.csproj", "{56BD14CD-34F7-4EF7-9AE9-E1B77ADF4933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeStore", "HomeStore\HomeStore.csproj", "{56BD14CD-34F7-4EF7-9AE9-E1B77ADF4933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeStore.Tests", "HomeStore.Tests\HomeStore.Tests.csproj", "{73C5EF12-9B77-47A5-A0FD-3D98465939E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeStore.Tests", "HomeStore.Tests\HomeStore.Tests.csproj", "{73C5EF12-9B77-47A5-A0FD-3D98465939E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
