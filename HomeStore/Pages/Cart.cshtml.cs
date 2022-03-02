@@ -25,5 +25,8 @@ namespace HomeStore.Pages
         }
 
         public IActionResult OnPost()
+        {
+            return null;
+        }
     }
 }
