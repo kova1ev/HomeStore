@@ -2,7 +2,7 @@ namespace HomeStore.Models
 {
     public class Cart
     {
-        private List<CartItem> itemCollection = new List<CartItem>();
+        public List<CartItem> itemCollection = new List<CartItem>();
         public virtual void AddItem(Product product, int quantity)
         {
             CartItem? item = itemCollection.Where(p => p.Product.Id == product.Id).FirstOrDefault();

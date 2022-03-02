@@ -12,7 +12,8 @@ namespace HomeStore.Infrastructure
         public static T? GetJson<T>(this ISession session,string key)
         {
             var tempData = session.GetString(key);
-            return tempData == null ? default(T) : JsonSerializer.Deserialize<T>(tempData);
+            var cart = tempData == null ? default(T) : JsonSerializer.Deserialize<T>(tempData);
+            return cart;
         }
     }
 }
