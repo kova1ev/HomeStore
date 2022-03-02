@@ -17,16 +17,21 @@ namespace HomeStore.Pages
 
         public Cart? Cart { get; set; }
         public string ReturnUrl { get; set; } = "/";
-
-        public void OnGet(string returnUrl)
-        {
+        public void OnGet(string returnUrl) {
             ReturnUrl = returnUrl ?? "/";
             Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int Id, string returnUrl)
         {
-            return null;
+            Product? product = repository.Products.FirstOrDefault(p => p.Id == Id);
+            if (product != null)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart.AddItem(product, 1);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
+            return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
 }
