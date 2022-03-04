@@ -16,6 +16,7 @@ builder.Services.AddSession();
 
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddServerSideBlazor();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -45,6 +46,8 @@ app.UseSession();
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 ProductSeedData.AddTestData(app);
 
