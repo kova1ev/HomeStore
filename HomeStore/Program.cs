@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionstring = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddMvc();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionstring));
 
