@@ -10,16 +10,17 @@ namespace HomeStore.Pages
     {
         private readonly IProductRepository repository;
 
-        public CartModel(IProductRepository repository)
+        public CartModel(IProductRepository repository, Cart cartService)
         {
             this.repository = repository;
+            Cart = cartService;
         }
 
-        public Cart? Cart { get; set; }
+        public Cart Cart { get; set; }
         public string ReturnUrl { get; set; } = "/";
-        public void OnGet(string returnUrl) {
+        public void OnGet(string returnUrl)
+        {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         public IActionResult OnPost(int Id, string returnUrl)
@@ -27,10 +28,14 @@ namespace HomeStore.Pages
             Product? product = repository.Products.FirstOrDefault(p => p.Id == Id);
             if (product != null)
             {
-                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(product, 1);
-                HttpContext.Session.SetJson("cart", Cart);
             }
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove(int Id, string returnUrl)
+        {
+            Cart.RemoveItem(Cart.Items.First(c => c.Product.Id == Id).Product);
             return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
