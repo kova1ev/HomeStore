@@ -4,13 +4,13 @@ namespace HomeStore.Models
     {
         public List<CartItem> Items { get; set; } = new List<CartItem>();
 
-        public void AddItem(Product product, int quantity)
+        public virtual void AddItem(Product product, int quantity)
         {
-            CartItem? line = Items
+            CartItem? item = Items
                 .Where(p => p.Product.Id == product.Id)
                 .FirstOrDefault();
 
-            if (line == null)
+            if (item == null)
             {
                 Items.Add(new CartItem
                 {
@@ -20,16 +20,16 @@ namespace HomeStore.Models
             }
             else
             {
-                line.Quantity += quantity;
+                item.Quantity += quantity;
             }
         }
 
-        public void RemoveLine(Product product) =>
+        public virtual void RemoveItem(Product product) =>
             Items.RemoveAll(l => l.Product.Id == product.Id);
 
         public decimal ComputeTotalValue() =>
             Items.Sum(e => e.Product.Price * e.Quantity);
 
-        public void Clear() => Items.Clear();
+        public virtual void Clear() => Items.Clear();
     }
 }

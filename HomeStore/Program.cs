@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using HomeStore.Data;
+using HomeStore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionstring = builder.Configuration.GetConnectionString("Default");
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connect
 builder.Services.AddRazorPages();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
