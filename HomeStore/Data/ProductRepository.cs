@@ -11,5 +11,22 @@ namespace HomeStore.Data
             dbcontext = context;
         }
         public IQueryable<Product> Products => dbcontext.Products;
+
+        public void CreateProduct(Product product)
+        {
+            dbcontext.Add(product);
+            dbcontext.SaveChanges();
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            dbcontext.Remove(product);
+            dbcontext.SaveChanges();
+        }
+
+        public void SaveProduct(Product product)
+        {
+            dbcontext.SaveChanges();
+        }
     }
 }
