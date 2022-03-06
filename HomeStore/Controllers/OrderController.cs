@@ -7,7 +7,7 @@ namespace HomeStore.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository orderRepository;
-        private readonly Cart cart;
+        private Cart cart;
 
         public OrderController(IOrderRepository repository, Cart cart)
         {
@@ -28,7 +28,7 @@ namespace HomeStore.Controllers
             }
             if (ModelState.IsValid)
             {
-                order.Items.ToArray();
+                order.Items = cart.Items.ToArray();
                 orderRepository.SaveOrder(order);
                 cart.Clear();
                 return RedirectToPage("/Completed", new { orderId = order.Id });

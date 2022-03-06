@@ -11,6 +11,7 @@ namespace HomeStore.Models
         [Required(ErrorMessage = "Введите описсание")]
         public string Description { get; set; } = string.Empty;
         [Required]
+        [Range(0.01,double.MaxValue,ErrorMessage ="Введите положительное число")]
         [Column(TypeName = "decimal(8,2)")]
         public decimal Price { get; set; }
         [Required(ErrorMessage = "Введите категорию")]
