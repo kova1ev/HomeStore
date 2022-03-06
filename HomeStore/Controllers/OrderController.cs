@@ -7,7 +7,7 @@ namespace HomeStore.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository orderRepository;
-        private Cart cart;
+        private readonly Cart cart;
 
         public OrderController(IOrderRepository repository, Cart cart)
         {

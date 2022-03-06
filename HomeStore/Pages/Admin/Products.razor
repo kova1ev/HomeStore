@@ -30,7 +30,7 @@
                          href="@GetEditUrl(p.Id)">
                             Edit
                         </NavLink>
-
+                        <button class="btn btn-danger btn-sm" @onclick="@(e=>DeleteProduct(p))">Delete</button>
                     </td>
                 </tr>
             }
@@ -43,6 +43,7 @@
         }
     </tbody>
 </table>
+<NavLink class="btn btn-primary" href="/admin/products/create">Create</NavLink>
 @code
 {
     public IProductRepository Repository => Service;
@@ -58,10 +59,16 @@
     }
     public string GetDetailsUrl(int id)
     {
-        return $"/admin/product/details/{id}";
+        return $"/admin/products/details/{id}";
     }
     public string GetEditUrl(int id)
     {
-        return $"/admin/product/edit/{id}";
+        return $"/admin/products/edit/{id}";
+    }
+
+    public async Task DeleteProduct(Product product)
+    {
+        Repository.DeleteProduct(product);
+        await UpdateData();
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "/admin/product/details/{id:int}"
+﻿@page "/admin/products/details/{id:int}"
 
 <h3 class="bg-info text-white text-center p-1">Details</h3>
 
@@ -12,13 +12,13 @@
     </tbody>
 </table>
 
-<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-warning" href="@EditUrl()">Edit</NavLink>
 <NavLink class="btn btn-secondary" href="/admin/products">Back</NavLink>
 
 @code {
 
     [Inject]
-    public IProductRepository Repository { get; set; }
+    public IProductRepository? Repository { get; set; }
     [Parameter]
     public int Id { get; set; }
 
@@ -26,11 +26,11 @@
 
     protected override void OnParametersSet()
     {
-        Product = Repository.Products.FirstOrDefault(p => p.Id == Id);
+        Product = Repository?.Products.FirstOrDefault(p => p.Id == Id);
     }
 
-    private string EditUrl()
+    public string EditUrl()
     {
-        return $"/admin/product/edit/{Product.Id}";
+        return $"/admin/products/edit/{Product?.Id}";
     }
 }
