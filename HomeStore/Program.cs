@@ -56,5 +56,5 @@ app.MapBlazorHub();
 app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 ProductSeedData.AddTestData(app);
-
+IdentitySeedData.EnsurePopulated(app);
 app.Run();

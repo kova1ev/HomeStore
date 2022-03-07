@@ -367,3 +367,6 @@ HomeStore/Homestore.db
 HomeStore/Homestore.db-shm
 HomeStore/Homestore.db-wal
 /HomeStore/IdentityDb.db
+/HomeStore/IdentityDb.db-shm
+/HomeStore/IdentityDb.db-wal
+/HomeStore/Pages/Admin/IdentityUsers.cshtml
