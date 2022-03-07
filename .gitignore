@@ -366,3 +366,4 @@ FodyWeavers.xsd
 HomeStore/Homestore.db
 HomeStore/Homestore.db-shm
 HomeStore/Homestore.db-wal
+/HomeStore/IdentityDb.db

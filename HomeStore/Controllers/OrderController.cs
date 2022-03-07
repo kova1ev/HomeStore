@@ -22,7 +22,7 @@ namespace HomeStore.Controllers
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-            if (cart.Items.Count() == 0)
+            if (cart.Items.Count == 0)
             {
                 ModelState.AddModelError("", "Корзина пуста!");
             }
