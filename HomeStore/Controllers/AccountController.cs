@@ -45,7 +45,7 @@ namespace HomeStore.Controllers
         }
 
         [Authorize]
-        public async Task<RedirectResult> Loguot(string returnUrl = "/")
+        public async Task<RedirectResult> Logout(string returnUrl = "/")
         {
             await signInManager.SignOutAsync();
             return Redirect(returnUrl);

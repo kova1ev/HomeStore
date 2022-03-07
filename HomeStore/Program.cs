@@ -25,15 +25,16 @@ builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
+if (app.Environment.IsProduction())
 {
     app.UseExceptionHandler("/error");
 }
-app.UseStatusCodePages();
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.UseStatusCodePages();
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
