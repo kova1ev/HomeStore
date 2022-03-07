@@ -22,11 +22,16 @@ builder.Services.AddSession();
 builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddServerSideBlazor();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/error");
 }
 app.UseStatusCodePages();
 app.UseHttpsRedirection();
@@ -34,21 +39,6 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-// app.MapControllerRoute("category",
-//                         "{category}",
-//                         new { Controller = "Home", action = "Index", page = 1 });
-
-// app.MapControllerRoute("catpage",
-//                         "{category}/Page{page:int}",
-//                         new { Controller = "Home", action = "Index" });
-
-// app.MapControllerRoute("page",
-//                         "Page{page:int}",
-//                         new { Controller = "Home", action = "Index", page = 1 });
-
-// app.MapControllerRoute("pagination",
-//                         "Products/Page{page}",
-//                         new { Controller = "Home", action = "Index", page = 1 });
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
